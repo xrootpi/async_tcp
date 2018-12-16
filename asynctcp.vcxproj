@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="connection.h" />
     <ClInclude Include="message_factory.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="connection.cpp" />
     <ClCompile Include="message_factory.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
