@@ -21,10 +21,12 @@
   <ItemGroup>
     <ClInclude Include="connection.h" />
     <ClInclude Include="message_factory.h" />
+    <ClInclude Include="tcp_client.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="connection.cpp" />
     <ClCompile Include="message_factory.cpp" />
+    <ClCompile Include="tcp_client.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

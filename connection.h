@@ -1,10 +1,5 @@
 #pragma once
-#include <iostream>
-#include <string>
-#include <sstream>
-#include <fstream>
 #include <boost/asio.hpp>
-#include <boost/bind.hpp>
 #include "message_factory.h"
 
 class connection
