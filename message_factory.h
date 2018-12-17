@@ -1,5 +1,6 @@
 #pragma once
 #include <boost/signals2.hpp>
+#include "debug_output.h"
 
 class message_factory
 {

@@ -23,6 +23,7 @@ void connection::read_from_client(const boost::system::error_code & error, size_
 		read();
 	} else
 	{
+		DEBUG_CONSOLE("connection::read_from_client: error");
 		m_client_socket.close();
 	}
 }
@@ -38,7 +39,13 @@ void connection::read()
 
 void connection::send_to_client(const boost::system::error_code & error, size_t bytes_transferred)
 {
-	//TODO: error logging
+	if (!error)
+	{
+		DEBUG_CONSOLE("connection::send_to_client: Messsage Sent");
+	}
+	else {
+		DEBUG_CONSOLE("error connection::send_to_client");
+	}
 }
 
 void connection::write(unsigned char * message)
