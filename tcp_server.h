@@ -12,7 +12,7 @@ public:
 	void initiate_acceptor(char *ip_address, int port);
 	void start_accept();
 	void on_socket_accept(const boost::system::error_code& error, connection *handle);
-	void run();
+	void run() const;
 	std::hash<connection*> connection_hash;
 	std::unordered_map<size_t, connection* >connections;
 	void broadcast(unsigned char* message);

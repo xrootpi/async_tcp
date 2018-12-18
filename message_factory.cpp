@@ -9,7 +9,6 @@ message_factory::~message_factory()
 
 void message_factory::read_message(unsigned char * message)
 {
-	DEBUG_CONSOLE(message);
 	on_receive(message);
 }
 
