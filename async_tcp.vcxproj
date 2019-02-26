@@ -19,17 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="connection.h" />
-    <ClInclude Include="debug_output.h" />
-    <ClInclude Include="message_factory.h" />
-    <ClInclude Include="tcp_client.h" />
-    <ClInclude Include="tcp_server.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="connection.cpp" />
     <ClCompile Include="message_factory.cpp" />
     <ClCompile Include="tcp_client.cpp" />
     <ClCompile Include="tcp_server.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\async_tcp\connection.h" />
+    <ClInclude Include="include\async_tcp\debug_output.h" />
+    <ClInclude Include="include\async_tcp\message_factory.h" />
+    <ClInclude Include="include\async_tcp\tcp_client.h" />
+    <ClInclude Include="include\async_tcp\tcp_server.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
