@@ -1,4 +1,4 @@
-#include "connection.h"
+#include "async_tcp/connection.h"
 
 connection::connection(boost::asio::io_service & io_service) :
 	m_io_service(io_service),

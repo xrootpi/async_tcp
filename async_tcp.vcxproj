@@ -19,17 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="connection.cpp" />
-    <ClCompile Include="message_factory.cpp" />
-    <ClCompile Include="tcp_client.cpp" />
-    <ClCompile Include="tcp_server.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="include\async_tcp\connection.h" />
     <ClInclude Include="include\async_tcp\debug_output.h" />
     <ClInclude Include="include\async_tcp\message_factory.h" />
     <ClInclude Include="include\async_tcp\tcp_client.h" />
     <ClInclude Include="include\async_tcp\tcp_server.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\connection.cpp" />
+    <ClCompile Include="src\message_factory.cpp" />
+    <ClCompile Include="src\tcp_client.cpp" />
+    <ClCompile Include="src\tcp_server.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -83,7 +83,18 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(MSBuildProjectDirectory)\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(MSBuildProjectDirectory)\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(MSBuildProjectDirectory)\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(MSBuildProjectDirectory)\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
