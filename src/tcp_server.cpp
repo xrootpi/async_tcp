@@ -6,7 +6,7 @@ tcp_server::tcp_server(char * ip_address, const int port, boost::asio::io_servic
 	_message_factory(message_factory)
 {
 	DEBUG_CONSOLE("starting tcp_server");
-	_message_factory->on_receive.connect(boost::bind(&tcp_server::broadcast, this, _1));
+	_message_factory->on_send.connect(boost::bind(&tcp_server::broadcast, this, _1));
 	tcp_server::initiate_acceptor(ip_address, port);
 }
 
