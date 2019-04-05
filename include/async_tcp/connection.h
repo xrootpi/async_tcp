@@ -9,7 +9,8 @@ public:
 	virtual ~connection();
 	boost::asio::ip::tcp::socket m_client_socket;
 	boost::asio::ip::tcp::socket* create_socket();
-	void read_from_client(const boost::system::error_code& error, size_t bytes_transferred);
+	void read_from_client(const boost::system::error_code& error, size_t bytes_transferred, size_t connection);
+	void read(size_t connection_hash);
 	void read();
 	void send_to_client(const boost::system::error_code& error, size_t bytes_transferred);
 	void write(unsigned char *message);

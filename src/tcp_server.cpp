@@ -6,7 +6,7 @@ tcp_server::tcp_server(char * ip_address, const int port, boost::asio::io_servic
 	_message_factory(message_factory)
 {
 	DEBUG_CONSOLE("starting tcp_server");
-	_message_factory->on_send.connect(boost::bind(&tcp_server::broadcast, this, _1));
+	_message_factory->on_send.connect(boost::bind(&tcp_server::handle_send, this, _1, _2));
 	tcp_server::initiate_acceptor(ip_address, port);
 }
 
@@ -52,7 +52,7 @@ void tcp_server::on_socket_accept(const boost::system::error_code & error, conne
 		const std::hash<connection*> hash_fn;
 		const auto hash = hash_fn(handle);
 		connections[hash] = handle;
-		handle->read();
+		handle->read(hash);
 		start_accept();
 	}
 	catch (boost::system::system_error& e)
@@ -71,6 +71,23 @@ void tcp_server::broadcast(unsigned char * message)
 	for (auto it = connections.begin(); it != connections.end(); ++it)
 	{
 		auto *handle = static_cast<connection*>(it->second);
+		handle->write(message);
+	}
+}
+
+void tcp_server::handle_send(unsigned char * message, size_t connection)
+{
+	if (connection == NULL && message == NULL)
+		broadcast(message);
+
+	if (message == NULL)
+	{
+		connections[connection]->close();
+		connections[connection]->~connection();
+		connections.erase(connection);
+	} else
+	{
+		auto *handle = connections[connection];
 		handle->write(message);
 	}
 }

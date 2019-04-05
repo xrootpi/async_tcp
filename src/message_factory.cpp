@@ -7,12 +7,12 @@ message_factory::message_factory()
 message_factory::~message_factory()
 = default;
 
-void message_factory::read_message(unsigned char * message)
+void message_factory::read_message(unsigned char * message, size_t connection)
 {
-	on_receive(message);
+	on_receive(message, connection);
 }
 
-void message_factory::write_message(unsigned char * message)
+void message_factory::write_message(unsigned char * message, size_t connection)
 {
-	on_send(message);
+	on_send(message, connection);
 }

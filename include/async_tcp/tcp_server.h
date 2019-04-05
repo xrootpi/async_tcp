@@ -16,6 +16,7 @@ public:
 	std::hash<connection*> connection_hash;
 	std::unordered_map<size_t, connection* >connections;
 	void broadcast(unsigned char* message);
+	void handle_send(unsigned char* message, size_t connection);
 	boost::asio::ip::tcp::acceptor m_client_acceptor;
 	boost::asio::io_service& m_io_service;
 private:
