@@ -21,6 +21,7 @@ void connection::read_from_client(const boost::system::error_code & error, size_
 		m_buffer[bytes_transferred] = 0;
 		message_factory->read_message(m_buffer, connection);
 		read(connection);
+		m_buffer[bytes_transferred] = 0;
 	} else
 	{
 		DEBUG_CONSOLE("connection::read_from_client: error");
