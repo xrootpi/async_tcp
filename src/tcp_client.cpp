@@ -5,7 +5,7 @@ m_io_service(io_service)
 {
 	message_factory->on_send.connect(boost::bind(&tcp_client::write_message, this, _1));
 	new_connection = new connection(m_io_service);
-	new_connection->message_factory = message_factory;
+	new_connection->m_factory = message_factory;
 	connect(ip_address,port);
 }
 
