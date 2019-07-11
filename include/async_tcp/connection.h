@@ -16,6 +16,6 @@ public:
 	void write(unsigned char *message);
 	unsigned char m_buffer[1024];
 	boost::asio::io_service& m_io_service;
-	message_factory *message_factory;
+	message_factory *m_factory;
 	void close();
 };

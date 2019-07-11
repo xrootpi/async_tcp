@@ -1,9 +1,9 @@
 #include "async_tcp/tcp_server.h"
 
-tcp_server::tcp_server(char * ip_address, const int port, boost::asio::io_service & io_service, message_factory * message_factory):
+tcp_server::tcp_server(const char * ip_address, const int port, boost::asio::io_service & io_service, message_factory * m_factory):
 	m_io_service(io_service),
 	m_client_acceptor(io_service),
-	_message_factory(message_factory)
+	_message_factory(m_factory)
 {
 	DEBUG_CONSOLE("starting tcp_server");
 	_message_factory->on_send.connect(boost::bind(&tcp_server::handle_send, this, _1, _2));
@@ -13,7 +13,7 @@ tcp_server::tcp_server(char * ip_address, const int port, boost::asio::io_servic
 tcp_server::~tcp_server()
 = default;
 
-void tcp_server::initiate_acceptor(char * ip_address, int port)
+void tcp_server::initiate_acceptor(const char * ip_address, int port)
 {
 	const auto listen_address = boost::asio::ip::address_v4::from_string(ip_address);
 	boost::asio::ip::tcp::endpoint endpoint(listen_address,static_cast<unsigned short>(port));
@@ -31,7 +31,7 @@ void tcp_server::start_accept()
 	{
 		auto *new_connection = new connection(m_io_service);
 		auto handle = new_connection;
-		handle->message_factory = _message_factory;
+		handle->m_factory = _message_factory;
 
 		m_client_acceptor.async_accept(handle->m_client_socket,
 			boost::bind(&tcp_server::on_socket_accept, this, boost::asio::placeholders::error, handle));
