@@ -6,11 +6,13 @@ include_directories(include)
 
 file(GLOB SOURCES "src/*.cpp")
  
-add_library(async-tcp ${SOURCES})
+add_library(async-tcp STATIC ${SOURCES})
 find_package(Boost REQUIRED)
 
+if(NOT MSVC)
+	target_link_libraries (async-tcp pthread)
+endif()
 
-target_link_libraries (async-tcp pthread)
 target_link_libraries (async-tcp ${Boost_LIBRARIES})
 
 target_include_directories(async-tcp PRIVATE  ${Boost_INCLUDE_DIRS})
